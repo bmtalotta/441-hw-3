@@ -44,6 +44,7 @@ int main()
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(dev_c, c, ThreadCount * sizeof(int), cudaMemcpyHostToDevice);
     findMin <<<grid, threads >>> (a, c);
+    cudaDeviceSynchronize();
     
     cudaMemcpy(c, dev_c, ThreadCount * sizeof(int), cudaMemcpyDeviceToHost);
     int min = c[0];
