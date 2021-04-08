@@ -44,17 +44,12 @@ int main(int argc, char *argv[])
     int numToSort = N / p;
     int low = rank * numToSort;
     int high = low + numToSort - 1;
-
+    
+    temp[0] = findMin(a, low, high);
     if (rank != 0)
     {
-        temp[0] = findMin(a, low, high);
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
     }
-    if(rank == 0)
-    {
-        temp[0] = findMin(a, low, high);
-    }
-    
     printf("minimum value rank is: %d\n", rank);
     MPI_Barrier(MPI_COMM_WORLD); //wait till all threads get here
     
