@@ -52,3 +52,4 @@ int main(int argc, char* argv[]) {
     free(temp);
     MPI_finalize();
     return 0;
+    }
