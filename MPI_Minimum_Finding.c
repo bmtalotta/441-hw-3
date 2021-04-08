@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     }
     free(a);
     free(temp);
-    MPI_finalize();
+    MPI_Finalize();
     return 0;
 }
 
