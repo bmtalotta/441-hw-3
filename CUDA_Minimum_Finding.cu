@@ -42,12 +42,13 @@ int main()
     cudaMemcpy(c, dev_c, MINE * sizeof(int), cudaMemcpyDeviceToHost);
     int min = c[0];
     for(int i = 0; i < 8; i++){
-        if(min> c[i]){
+        if(min > c[i]){
             min= c[i];
         }
     }
     printf("minimum value using cuda is: %d\n", min);
     cudaFree(dev_a);
+    cudaFree(dev_c);
     return 0;
 }
 
