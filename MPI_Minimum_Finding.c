@@ -41,11 +41,13 @@ int main(int argc, char* argv[]) {
     }
     MPI_Barrier(MPI_COMM_WORLD);
     //recieve loop
+    if(rank == 0){
     for(i = 0; i < 8; i++){
     MPI_Recv(temp, 1, MPI_INT, i, tag, MPI_COMM_WORLD, &status);
     }
     int answer = findMin(temp,0,7);
     printf("minimum value is: ", answer);
+    }
     free(a);
     free(temp);
     MPI_finalize();
