@@ -2,7 +2,7 @@
 #include <stdlib.h>
 //based on cuda summing_Arrrays example
 #define N 8 * 1000000
-#define MINE 8
+#define ThreadCount 8
 __global__ void findMin(int* a, int* c )
 {
     int numToSort = N / 8;
@@ -21,7 +21,7 @@ __global__ void findMin(int* a, int* c )
 int main()
 {
     dim3 grid(1);
-    dim3 threads(8);
+    dim3 threads(ThreadCount);
     int a[N];
     int *dev_a;
     int c[8];
@@ -31,7 +31,7 @@ int main()
         c[i] = 1000000000;
     }
     cudaMalloc((void**)&dev_a, N * sizeof(int));
-    cudaMalloc((void**)&dev_c, 8 * sizeof(int));
+    cudaMalloc((void**)&dev_c, ThreadCount * sizeof(int));
     //fill array
     for (int i = 0; i < N; i++){
         a[i] = rand() % 1000000000;
@@ -39,7 +39,7 @@ int main()
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
     findMin <<<grid, threads >>> (a, c);
     
-    cudaMemcpy(c, dev_c, MINE * sizeof(int), cudaMemcpyDeviceToHost);
+    cudaMemcpy(c, dev_c, ThreadCount * sizeof(int), cudaMemcpyDeviceToHost);
     int min = c[0];
     for(int i = 0; i < 8; i++){
         if(min > c[i]){
