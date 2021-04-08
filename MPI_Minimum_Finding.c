@@ -63,8 +63,7 @@ int main(int argc, char *argv[])
             }
         }
         int answer = findMin(a, 0, N-1);
-        printf("minimum value is: ");
-        print(min);
+        printf("minimum value is: %d", min);
     }
     free(a);
     free(temp);
