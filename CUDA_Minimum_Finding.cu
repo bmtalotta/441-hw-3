@@ -18,7 +18,7 @@ int main()
     dim3 threads(8);
     int a[N];
     int *dev_a;
-    int MinVal[8];
+    int minVal[8];
     for(int i = 0; i < 8; i++){
         minVal[i] = 1000000000;
     }
@@ -33,9 +33,9 @@ int main()
     int high = low + numToSort - 1;
     
     findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
-    int min = MinVal[0];
+    int min = minVal[0];
     for(int i = 0; i < 8; i++){
-        if(min> MinVal[i]){
+        if(min> minVal[i]){
             min= minVal[i];
         }
     }
