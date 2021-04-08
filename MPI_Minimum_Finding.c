@@ -32,7 +32,8 @@ int main(int argc, char *argv[])
 
     a = (int *)malloc(sizeof(int) * N);
     temp = (int *)malloc(sizeof(int) * 1);
-
+    
+    printf("minimum value rank is 1 : %d\n", rank);
     if (rank == 0)
     {
         for (i = 0; i < N; i++){
@@ -45,13 +46,12 @@ int main(int argc, char *argv[])
     int low = rank * numToSort;
     int high = low + numToSort - 1;
     
-    printf("minimum value rank is 1 : %d\n", rank);
     temp[0] = findMin(a, low, high);
     if (rank != 0)
     {
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
     }
-    printf("minimum value rank is: %d\n", rank);
+    //printf("minimum value rank is: %d\n", rank);
     MPI_Barrier(MPI_COMM_WORLD); //wait till all threads get here
     
     //recieve loop
