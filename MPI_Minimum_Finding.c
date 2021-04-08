@@ -32,8 +32,6 @@ int main(int argc, char *argv[])
 
     a = (int *)malloc(sizeof(int) * N);
     temp = (int *)malloc(sizeof(int) * 1);
-    
-    printf("minimum value rank is 1 : %d\n", rank);
     if (rank == 0)
     {
         for (i = 0; i < N; i++){
@@ -52,7 +50,6 @@ int main(int argc, char *argv[])
     {
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
     }
-    printf("minimum value rank is: %d\n", rank);
     MPI_Barrier(MPI_COMM_WORLD); //wait till all threads get here
     
     //recieve loop
@@ -62,6 +59,8 @@ int main(int argc, char *argv[])
         for (i = 0; i < p; i++)
         {
             MPI_Recv(temp, 1, MPI_INT, i, tag, MPI_COMM_WORLD, &status);
+            
+            printf("value rank is: %d\n", temp[0]);
             if(min > temp[0]){
                 min = temp[0];
             }
