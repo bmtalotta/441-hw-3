@@ -25,20 +25,20 @@ int main()
     }
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
     int numToSort = N / 8;
-    int low = numToSort * threadIDx.x;
+    int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
     int MinVal[8];
     for(int i = 0; i < 8; i++){
         minVal[i] = 1000000000;
     }
-    findMin <<<grid, threads >>> (a,low,high,minVal[threadIDx.x]);
+    findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
     int minAnswer = MinVal[0];
     for(int i = 0; i < 8; i++){
         if(minAnswer > MinVal[i]){
             minAnswer = minVal[i];
         }
     }
-    printf("minimum value using cuda is: %d\n", minAnswer);
+    printf("minimum value using cuda is: %d\n", min);
 
     return 0;
 }
