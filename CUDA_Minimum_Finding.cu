@@ -18,6 +18,10 @@ int main()
     dim3 threads(8);
     int a[N];
     int *dev_a;
+    int MinVal[8];
+    for(int i = 0; i < 8; i++){
+        minVal[i] = 1000000000;
+    }
     cudaMalloc((void**)&dev_a, 8 * sizeof(int));
     //fill array
     for (int i = 0; i < N; i++){
@@ -27,10 +31,7 @@ int main()
     int numToSort = N / 8;
     int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
-    int MinVal[8];
-    for(int i = 0; i < 8; i++){
-        minVal[i] = 1000000000;
-    }
+    
     findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
     int min = MinVal[0];
     for(int i = 0; i < 8; i++){
