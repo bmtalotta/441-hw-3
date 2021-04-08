@@ -33,10 +33,12 @@ int main(int argc, char *argv[])
 
     if (rank == 0)
     {
-        for (i = 0; i < N; i++)
+        for (i = 0; i < N; i++){
             a[i] = rand() % 1000000000;
-    }
+        }
+        
     MPI_Bcast(a, N, MPI_INT, 0, MPI_COMM_WORLD);
+    }
     int numToSort = N / p;
     int low = rank * numToSort;
     int high = low + numToSort - 1;
