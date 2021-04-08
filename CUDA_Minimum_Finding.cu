@@ -36,6 +36,8 @@ int main()
     for (int i = 0; i < N; i++){
         a[i] = rand() % 1000000000;
     }
+    
+    printf("minimum sadfasdfasdfasdfasdfas: \n");
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
     findMin <<<grid, threads >>> (a, c);
     
