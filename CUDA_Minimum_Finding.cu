@@ -51,7 +51,7 @@ int main()
             min = c[i];
         }
         
-        printf("min for thread %d: %d\n", i, c[i]);
+    //   printf("min for thread %d: %d\n", i, c[i]);
     }
     printf("minimum value using cuda is: %d\n", min);
     cudaFree(dev_a);
