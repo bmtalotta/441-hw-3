@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     if (rank == 0)
     {
         int min = temp[0];
-        for (i = 0; i < 8; i++)
+        for (i = 0; i < p; i++)
         {
             MPI_Recv(temp, 1, MPI_INT, i, tag, MPI_COMM_WORLD, &status);
             if(min > temp[0]){
