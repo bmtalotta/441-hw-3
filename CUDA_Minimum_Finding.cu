@@ -37,7 +37,7 @@ int main()
         a[i] = rand() % 1000000000;
     }
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
-    findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
+    findMin <<<grid, threads >>> (a, c);
     
     cudaMemcpy(c, dev_c, MINE * sizeof(int), cudaMemcpyDeviceToHost);
     int min = c[0];
