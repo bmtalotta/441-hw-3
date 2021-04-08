@@ -47,12 +47,13 @@ int main(int argc, char *argv[])
     {
         temp[0] = findMin(a, low, high);
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
+        
+        MPI_Barrier(MPI_COMM_WORLD);
     }
     else
     {
         temp[0] == findMin(a, low, high);
     }
-    MPI_Barrier(MPI_COMM_WORLD);
     //recieve loop
     if (rank == 0)
     {
