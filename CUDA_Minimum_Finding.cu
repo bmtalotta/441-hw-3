@@ -3,11 +3,11 @@
 //based on cuda summing_Arrrays example
 #define N 8 * 1000000
 
-__global__ void findMin(int* a, int low, int high, int &minValForThread[])
+__global__ void findMin(int* a, int low, int high, int &minValForThread)
 {
     for(int i = low; i < high; i++ ){
-        if(minValForThread[threadIdx.x] > a[i]){
-            minValForThread[threadId.x] = a[i];
+        if(minValForThread > a[i]){
+            minValForThread = a[i];
         }
     }
 }
@@ -32,7 +32,7 @@ int main()
     int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
     
-    findMin <<<grid, threads >>> (a,low,high,minVal);
+    findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
     cudaDeviceSynchronize();  
     int min = minVal[0];
     for(int i = 0; i < 8; i++){
