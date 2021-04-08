@@ -33,6 +33,7 @@ int main()
     int high = low + numToSort - 1;
     
     findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
+    cudaDeviceSynchronize();  
     int min = minVal[0];
     for(int i = 0; i < 8; i++){
         if(min> minVal[i]){
