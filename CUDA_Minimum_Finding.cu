@@ -22,7 +22,8 @@ int main()
 {
     dim3 grid(1);
     dim3 threads(ThreadCount);
-    int a[N];
+    int *a;
+    a = (int *)malloc(sizeof(int) * N);
     int *dev_a;
     int c[8];
     int *dev_c;
