@@ -32,10 +32,10 @@ int main()
         minVal[i] = 1000000000;
     }
     findMin <<<grid, threads >>> (a,low,high,minVal[threadIdx.x]);
-    int minAnswer = MinVal[0];
+    int min = MinVal[0];
     for(int i = 0; i < 8; i++){
-        if(minAnswer > MinVal[i]){
-            minAnswer = minVal[i];
+        if(min> MinVal[i]){
+            min= minVal[i];
         }
     }
     printf("minimum value using cuda is: %d\n", min);
