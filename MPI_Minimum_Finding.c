@@ -36,12 +36,16 @@ int main(int argc, char* argv[]) {
         temp[rank] = findMin(a,startPoint,endPoint);
     MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
     }
+    else{
+        temp[rank] == findMin(a,startPoint,endPoint);
+    }
     MPI_Barrier(MPI_COMM_WORLD);
     //recieve loop
     for(i = 0; i < 8; i++){
     MPI_Recv(temp, 1, MPI_INT, i, tag, MPI_COMM_WORLD, &status);
     }
-    //finish crap
+    int answer = findMin(temp,0,7);
+    printf("minimum value is: ", answer);
     free(a);
     free(temp);
     MPI_finalize();
