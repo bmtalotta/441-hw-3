@@ -56,11 +56,9 @@ int main(int argc, char *argv[])
     if (rank == 0)
     {
         int min = temp[0];
-        for (i = 0; i < p; i++)
+        for (i = 1; i < p; i++)
         {
             MPI_Recv(temp, 1, MPI_INT, i, tag, MPI_COMM_WORLD, &status);
-            
-            printf("value rank is: %d\n", temp[0]);
             if(min > temp[0]){
                 min = temp[0];
             }
