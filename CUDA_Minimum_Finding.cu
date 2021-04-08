@@ -40,6 +40,7 @@ int main()
     }
     
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_c, c, ThreadCount * sizeof(int), cudaMemcpyHostToDevice);
     findMin <<<grid, threads >>> (a, c);
     
     cudaMemcpy(c, dev_c, ThreadCount * sizeof(int), cudaMemcpyDeviceToHost);
@@ -48,7 +49,7 @@ int main()
         if(min > c[i]){
             min= c[i];
             
-    printf("min for thread %d: %d", i, c[i]);
+         printf("min for thread %d: %d", i, c[i]);
         }
     }
     printf("minimum value using cuda is: %d\n", min);
