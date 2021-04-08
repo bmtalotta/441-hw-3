@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
     int low = rank * numToSort;
     int high = low + numToSort - 1;
     
+    printf("minimum value rank is 1 : %d\n", rank);
     temp[0] = findMin(a, low, high);
     if (rank != 0)
     {
