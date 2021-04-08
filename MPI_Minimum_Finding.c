@@ -1,7 +1,7 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+//based on para_mergesort example
 #define N 8 * 1000000
 int findMin(int a[], int low, int high)
 {
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             a[i] = rand() % 1000000000;
         }
         
-    MPI_Bcast(a, N, MPI_INT, 0, MPI_COMM_WORLD);
+        MPI_Bcast(a, N, MPI_INT, 0, MPI_COMM_WORLD);
     }
     int numToSort = N / p;
     int low = rank * numToSort;
@@ -53,9 +53,10 @@ int main(int argc, char *argv[])
         temp[0] = findMin(a, low, high);
     }
     //recieve loop
+    
+    MPI_Barrier(MPI_COMM_WORLD);
     if (rank == 0)
     {
-        MPI_Barrier(MPI_COMM_WORLD);
         int min = temp[0];
         for (i = 0; i < p; i++)
         {
