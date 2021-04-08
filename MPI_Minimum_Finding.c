@@ -1,3 +1,5 @@
+//MPI_Minimum_Finding.c
+//Ben Talotta
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,9 +54,11 @@ int main(int argc, char *argv[])
     {
         temp[0] = findMin(a, low, high);
     }
-    //recieve loop
     
-    MPI_Barrier(MPI_COMM_WORLD);
+    printf("minimum value parallel is:dsadfasdfasdf \n");
+    MPI_Barrier(MPI_COMM_WORLD); //wait till all threads get here
+    
+    //recieve loop
     if (rank == 0)
     {
         int min = temp[0];
