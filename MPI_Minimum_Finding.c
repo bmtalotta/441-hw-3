@@ -40,8 +40,9 @@ int main(int argc, char *argv[])
             a[i] = rand() % 1000000000;
         }
         
-        MPI_Bcast(a, N, MPI_INT, 0, MPI_COMM_WORLD);
     }
+    
+    MPI_Bcast(a, N, MPI_INT, 0, MPI_COMM_WORLD);
     int numToSort = N / p;
     int low = rank * numToSort;
     int high = low + numToSort - 1;
@@ -51,7 +52,7 @@ int main(int argc, char *argv[])
     {
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
     }
-    //printf("minimum value rank is: %d\n", rank);
+    printf("minimum value rank is: %d\n", rank);
     MPI_Barrier(MPI_COMM_WORLD); //wait till all threads get here
     
     //recieve loop
