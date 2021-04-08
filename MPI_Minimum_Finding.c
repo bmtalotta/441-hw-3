@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         temp[0] = findMin(a, low, high);
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
     }
-    else
+    if(rank == 0)
     {
         temp[0] = findMin(a, low, high);
     }
