@@ -39,7 +39,7 @@ int main()
         }
     }
     printf("minimum value using cuda is: %d\n", min);
-
+    cudaFree(dev_a);
     return 0;
 }
 
