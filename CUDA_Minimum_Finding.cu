@@ -22,7 +22,7 @@ int main()
     for(int i = 0; i < 8; i++){
         minVal[i] = 1000000000;
     }
-    cudaMalloc((void**)&dev_a, 8 * sizeof(int));
+    cudaMalloc((void**)&dev_a, N * sizeof(int));
     //fill array
     for (int i = 0; i < N; i++){
         a[i] = rand() % 1000000000;
