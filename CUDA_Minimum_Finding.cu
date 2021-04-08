@@ -16,6 +16,7 @@ __global__ void findMin(int* a, int* c )
         }
     }
     c[threadIdx.x] = minValForThread;
+    printf("min for thread %d: %d", threadIdx.x, c[threadIdx.x]);
 }
 
 int main()
