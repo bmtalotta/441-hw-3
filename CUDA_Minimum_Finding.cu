@@ -16,7 +16,7 @@ __global__ void findMin(int* a, int* c )
         }
     }
     c[threadIdx.x] = minValForThread;
-    printf("min for thread %d: %d", threadIdx.x, c[threadIdx.x]);
+    printf("min for thread %d: %d\n", threadIdx.x, c[threadIdx.x]);
 }
 
 int main()
@@ -47,9 +47,8 @@ int main()
     int min = c[0];
     for(int i = 0; i < 8; i++){
         if(min > c[i]){
-            min= c[i];
-            
-         printf("min for thread %d: %d", i, c[i]);
+            min = c[i];
+            printf("min for thread %d: %d\n", i, c[i]);
         }
     }
     printf("minimum value using cuda is: %d\n", min);
