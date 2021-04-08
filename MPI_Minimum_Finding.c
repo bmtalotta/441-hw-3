@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 8000000
+#define N 8 * 1000000
 int findMin(int a[], int low, int high)
 {
     int minVal = a[low];
@@ -47,8 +47,6 @@ int main(int argc, char *argv[])
     {
         temp[0] = findMin(a, low, high);
         MPI_Send(temp, 1, MPI_INT, 0, tag, MPI_COMM_WORLD);
-        
-        MPI_Barrier(MPI_COMM_WORLD);
     }
     else
     {
@@ -57,6 +55,7 @@ int main(int argc, char *argv[])
     //recieve loop
     if (rank == 0)
     {
+        MPI_Barrier(MPI_COMM_WORLD);
         int min = temp[0];
         for (i = 0; i < p; i++)
         {
