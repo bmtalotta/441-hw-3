@@ -3,11 +3,11 @@
 //based on cuda summing_Arrrays example
 #define N 8 * 1000000
 
-__global__ void findMin(int* a, int low, int high, int minVal)
+__global__ void findMin(int* a, int low, int high, int minValForThread)
 {
     for(int i = low; i < high; i++ ){
-        if(minVal > a[i]){
-            minVal = a[i];
+        if(minValForThread > a[i]){
+            minValForThread = a[i];
         }
     }
 }
