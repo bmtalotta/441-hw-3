@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
             }
         }
         int answer = findMin(a, 0, N-1);
-        printf("minimum value parallel is: %d", min);
-        printf("minimum value not parallel is: %d", answer);
+        //printf("minimum value parallel is: %d", min);
+        //printf("minimum value not parallel is: %d", answer);
     }
     free(a);
     free(temp);
