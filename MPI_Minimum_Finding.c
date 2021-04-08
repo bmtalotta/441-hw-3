@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         temp[0] = findMin(a, low, high);
     }
     
-    printf("minimum value parallel is:dsadfasdfasdf \n");
+    printf("minimum value rank is: %d\n");
     MPI_Barrier(MPI_COMM_WORLD); //wait till all threads get here
     
     //recieve loop
