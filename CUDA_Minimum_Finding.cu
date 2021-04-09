@@ -10,6 +10,8 @@ __global__ void findMin(int* a, int* c )
     int high = low + numToSort - 1;
     int minValForThread = 1000000000;
     int i;
+    
+    printf("low: %d high: %d\n", low, high);
     for(i = low; i < high; i++ ){
         
         printf("here\n");
