@@ -6,7 +6,7 @@ __global__ void add(int* a,int* c)
 {
     int x = blockIdx.x;
     int sum = 0;
-    for(int i = 0; i < rows; i ++){
+    for(int i = 0; i < ROWS; i ++){
         sum += a[(COLUMNS * i) + x];
     }
     c[x] = sum;
