@@ -58,7 +58,6 @@ struct Sphere {
         	maxz = t;
         }
      }
-    int offset = x + y * DIM;
     red[offset] = (char) (r * 255);
     green[offset] = (char) (g * 255);
     blue[offset] = (char) (b * 255);
