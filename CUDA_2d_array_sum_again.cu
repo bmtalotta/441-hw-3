@@ -16,6 +16,9 @@ __global__ void add(int* a,int* c)
         if(x < calculationInBox){
             cache[x] += cache[x + calculationInBox];
             __syncthreads();
+            if(calculationInBox == 1){
+                break;
+            }
             calculationInBox /=2;
         }
     }
