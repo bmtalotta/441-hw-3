@@ -50,7 +50,7 @@ int main()
     cudaMemcpy(c, dev_c, ROWS * sizeof(int), cudaMemcpyDeviceToHost);
     cudaDeviceSynchronize();//wait for threads to finish
     int findColSum = 0;
-    for(int i = 0; i < COLUMNS; i++){
+    for(int i = 0; i < ROWS; i++){
         printf("+ %d",c[i]);
         findColSum += c[i];
     }
