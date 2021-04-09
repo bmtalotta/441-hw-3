@@ -31,6 +31,7 @@ int main()
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
     add <<<1, COLUMNS >>> (dev_a, dev_c);
+    cudaDeviceSynchronize();
     int findColSum = 0;
     for(int i = 0; i < COLUMNS; i++){
         findColSum += c[i];
