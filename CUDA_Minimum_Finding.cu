@@ -9,8 +9,8 @@ __global__ void findMin(int* a, int* c )
     int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
     int minValForThread = 1000000000;
-    
-    for(int i = low; i < high; i++ ){
+    int i;
+    for(i = low; i < high; i++ ){
         
         printf("here\n");
         if(minValForThread > a[i]){
