@@ -32,7 +32,7 @@ int main()
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(dev_c, c, COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
     add <<<1, COLUMNS >>> (dev_a, dev_c);
-    cudaMemcpy(c, dev_c, COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(c, dev_c, COLUMNS * sizeof(int), cudaMemcpyDeviceToHost);
     cudaDeviceSynchronize();//wait for threads to finish
     int findColSum = 0;
     for(int i = 0; i < COLUMNS; i++){
