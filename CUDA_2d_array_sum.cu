@@ -25,7 +25,7 @@ int main()
 
     for (int y = 0; y < ROWS; y++)              // Fill Arrays
         for (int x = 0; x < COLUMNS; x++)
-            a[y][x] = rand()% 50;
+            a[y][x] = rand()% 10;
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
     add <<<1, COLUMNS >>> (dev_a, dev_c);
@@ -33,7 +33,7 @@ int main()
     for(int i = 0; i < COLUMNS; i++){
         findColSum += c[i];
     }
-    printf("the sum of the columns is: %d", findColSum);
+    printf("the sum of the columns is: %d\n", findColSum);
     cudaFree(dev_a);
     cudaFree(dev_c);
     return 0;
