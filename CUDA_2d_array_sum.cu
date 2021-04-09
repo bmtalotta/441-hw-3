@@ -36,8 +36,6 @@ int main()
     cudaDeviceSynchronize();//wait for threads to finish
     int findColSum = 0;
     for(int i = 0; i < COLUMNS; i++){
-        
-        printf("the sum of the columns is: %d\n", findColSum);
         findColSum += c[i];
     }
     printf("the sum of the columns is: %d\n", findColSum);
