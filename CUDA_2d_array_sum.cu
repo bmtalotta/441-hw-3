@@ -5,7 +5,6 @@
 __global__ void add(int* a,int* c)
 {
     int x = blockIdx.x;
-    int y = blockIdx.y;
     int sum = 0;
     for(int i = 0; i < rows; i ++){
         sum += a[(COLUMNS * i) + x];
@@ -29,7 +28,7 @@ int main()
             a[y][x] = rand()% 50;
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
-    add <<<1, COLUMNS >>> (dev_a);
+    add <<<1, COLUMNS >>> (dev_a, dev_c);
 
     cudaMemcpy(c), dev_c, COLUMNS * sizeof(int), cudaMemcpyDeviceToHost);
 
