@@ -1,3 +1,5 @@
+//CUDE_Minimum_Fineding.cu
+//Ben Talotta
 #include "stdio.h"
 #include "stdlib.h"
 //based on cuda summing_Arrrays example

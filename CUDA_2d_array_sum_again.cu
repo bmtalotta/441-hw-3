@@ -1,17 +1,17 @@
+//CUDE_2d_arraySum_again.cu
+//Ben Talotta
 #include "stdio.h"
 #define COLUMNS 8
 #define ROWS 8
 //based off sum2darr.cu and kernal test code examples code
 __global__ void add(int* a,int* c)
 {
-    __shared__ float cache[COLUMNS];
+    __shared__ int cache[COLUMNS];
     int tid = threadIdx.x + (blockIdx.x * blockDim.x);
     int x = threadIdx.x;
     cache[x] = a[tid];
     int calculationInBox = blockDim.x / 2;
-    
-    printf("into loop \n");
-    while (calculationInBox > 0)
+    while (calculationInBox >= 1)
     {
         if(x < calculationInBox){
             cache[x] += cache[x + calculationInBox];

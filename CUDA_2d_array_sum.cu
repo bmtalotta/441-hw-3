@@ -1,3 +1,5 @@
+//CUDE_2d_arraySum.cu
+//Ben Talotta
 #include "stdio.h"
 #define COLUMNS 4
 #define ROWS 3
