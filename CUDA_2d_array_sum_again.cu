@@ -9,6 +9,7 @@ __global__ void add(int* a,int* c)
     __shared__ int cache[COLUMNS];
     int tid = threadIdx.x + (blockIdx.x * blockDim.x);
     int x = threadIdx.x;
+    printf("%d \n", a[tid]);
     cache[x] = a[tid];
     int calculationInBox = blockDim.x / 2;
     while (calculationInBox >= 1)
