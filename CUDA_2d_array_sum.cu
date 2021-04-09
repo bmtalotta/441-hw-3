@@ -10,7 +10,7 @@ __global__ void add(int* a,int* c)
         sum += a[(COLUMNS * i) + x];
     }
     
-    printf("the sum of the column is: %d\n", sum);
+    printf("the sum of the %d thread column is: %d\n", x, sum);
     c[x] = sum;
 }
 
@@ -31,9 +31,11 @@ int main()
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
     add <<<1, COLUMNS >>> (dev_a, dev_c);
-    cudaDeviceSynchronize();
+    cudaDeviceSynchronize();//wait for threads to finish
     int findColSum = 0;
     for(int i = 0; i < COLUMNS; i++){
+        
+        printf("the sum of the columns is: %d\n", findColSum);
         findColSum += c[i];
     }
     printf("the sum of the columns is: %d\n", findColSum);
