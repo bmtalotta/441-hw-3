@@ -9,6 +9,8 @@ __global__ void add(int* a,int* c)
     for(int i = 0; i < ROWS; i ++){
         sum += a[(COLUMNS * i) + x];
     }
+    
+    printf("the sum of the column is: %d\n", sum);
     c[x] = sum;
 }
 
