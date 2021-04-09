@@ -16,15 +16,13 @@ __global__ void add(int* a,int* c)
         if(x < calculationInBox){
             cache[x] += cache[x + calculationInBox];
             __syncthreads();
+            printf("%d, %d\n",cache[x], cache[x+ calculationInBox]);
             if(calculationInBox == 1){
                 break;
             }
         }
-        
         calculationInBox /=2;
-      //  printf("calcbox value: %d\n", calculationInBox);
     }
-    printf("out of loop \n");
     if(x == 0){
         c[x] = cache[0];
     }
