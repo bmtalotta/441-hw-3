@@ -19,6 +19,7 @@ __global__ void add(int* a,int* c)
             if(calculationInBox == 1){
                 break;
             }
+            printf("calcbox value: %d\n", calculationInBox);
             calculationInBox /=2;
         }
     }
