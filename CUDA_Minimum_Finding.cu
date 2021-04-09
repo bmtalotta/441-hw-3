@@ -10,16 +10,12 @@ __global__ void findMin(int* a, int* c )
     int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
     int minValForThread = a[low];
-    for(int i = low; i < high; ++i){//goes through once doesnt loop
-        printf("here in loop\n");
+    for(int i = low; i < high; ++i){
         if(minValForThread > a[i]){
             minValForThread = a[i];
         }
     }
-    printf("here 3\n");//skips
-    
-    printf("min for thread %d: %d\n", threadIdx.x, c[threadIdx.x]);//skips
-    c[threadIdx.x] = minValForThread;//does
+    c[threadIdx.x] = minValForThread;
 }
 
 int main()
@@ -52,8 +48,6 @@ int main()
         if(min > c[i]){
             min = c[i];
         }
-        
-    //   printf("min for thread %d: %d\n", i, c[i]);
     }
     printf("minimum value using cuda is: %d\n", min);
     cudaFree(dev_a);
