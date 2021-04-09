@@ -23,14 +23,14 @@ __global__ void add(int* a,int* c)
         calculationInBox /=2;
     }
     if(x == 0){
-        c[x] = cache[0];
+        c[blockIdx.x] = cache[0];
     }
 }
 
 int main()
 {
     int a[ROWS][COLUMNS];
-    int c[COLUMNS];
+    int c[ROWS];
     int* dev_a;
     int* dev_c;
     dim3 grid(ROWS);
@@ -38,16 +38,16 @@ int main()
 
 
     cudaMalloc((void**)&dev_a, ROWS * COLUMNS * sizeof(int));
-    cudaMalloc((void**)&dev_c, COLUMNS * sizeof(int));
+    cudaMalloc((void**)&dev_c, ROWS * sizeof(int));
 
     for (int y = 0; y < ROWS; y++)              // Fill Arrays
         for (int x = 0; x < COLUMNS; x++)
             a[y][x] = rand()% 10;
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_c, c, COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_c, c, ROWS * sizeof(int), cudaMemcpyHostToDevice);
     add <<<grid, threads >>> (dev_a, dev_c);
-    cudaMemcpy(c, dev_c, COLUMNS * sizeof(int), cudaMemcpyDeviceToHost);
+    cudaMemcpy(c, dev_c, ROWS * sizeof(int), cudaMemcpyDeviceToHost);
     cudaDeviceSynchronize();//wait for threads to finish
     int findColSum = 0;
     for(int i = 0; i < COLUMNS; i++){
