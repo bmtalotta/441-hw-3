@@ -16,7 +16,6 @@ __global__ void add(int* a,int* c)
         if(x < calculationInBox){
             cache[x] += cache[x + calculationInBox];
             __syncthreads();
-            printf("%d, %d\n",cache[x], cache[x+ calculationInBox]);
             if(calculationInBox == 1){
                 break;
             }
@@ -52,9 +51,10 @@ int main()
     cudaDeviceSynchronize();//wait for threads to finish
     int findColSum = 0;
     for(int i = 0; i < COLUMNS; i++){
+        printf("+ %d",c[i]);
         findColSum += c[i];
     }
-    printf("the sum of the columns is: %d\n", findColSum);
+    printf("\nthe sum of the columns is: %d\n", findColSum);
     cudaFree(dev_a);
     cudaFree(dev_c);
     return 0;
