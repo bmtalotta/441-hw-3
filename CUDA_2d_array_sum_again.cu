@@ -19,10 +19,10 @@ __global__ void add(int* a,int* c)
             if(calculationInBox == 1){
                 break;
             }
-            calculationInBox /=2;
         }
         
-            printf("calcbox value: %d\n", calculationInBox);
+        calculationInBox /=2;
+        printf("calcbox value: %d\n", calculationInBox);
     }
     printf("out of loop \n");
     if(x == 0){
