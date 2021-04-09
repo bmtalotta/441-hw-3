@@ -1,35 +1,37 @@
 #include "stdio.h"
-#define COLUMNS 3
-#define ROWS 2
-
-__global__ void add(int* a, int* b, int* c)
+#define COLUMNS 4
+#define ROWS 3
+//based off sum2darr.cu example code
+__global__ void add(int* a,int* c)
 {
     int x = blockIdx.x;
     int y = blockIdx.y;
-    int i = (COLUMNS * y) + x;
-    c[i] = a[i] + b[i];
+    int sum = 0;
+    for(int i = 0; i < rows; i ++){
+        sum += a[(COLUMNS * i) + x];
+    }
+    c[x] = sum;
 }
 
 int main()
 {
-    int a[ROWS][COLUMNS], b[ROWS][COLUMNS], c[ROWS][COLUMNS];
-    int* dev_a, * dev_b, * dev_c;
+    int a[ROWS][COLUMNS];
+    int c[COLUMNS];
+    int* dev_a;
+    int* dev_c;
+
 
     cudaMalloc((void**)&dev_a, ROWS * COLUMNS * sizeof(int));
-    cudaMalloc((void**)&dev_b, ROWS * COLUMNS * sizeof(int));
-    cudaMalloc((void**)&dev_c, ROWS * COLUMNS * sizeof(int));
+    cudaMalloc((void**)&dev_c, COLUMNS * sizeof(int));
 
     for (int y = 0; y < ROWS; y++)              // Fill Arrays
         for (int x = 0; x < COLUMNS; x++)
-            a[y][x] = 7, b[y][x] = 7;
+            a[y][x] = rand()% 50;
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
-    cudaMemcpy(dev_b, b, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
+    add <<<1, COLUMNS >>> (dev_a);
 
-    dim3 grid(COLUMNS, ROWS);
-    add <<<grid, 1 >>> (dev_a, dev_b, dev_c);
-
-    cudaMemcpy(c, dev_c, ROWS * COLUMNS * sizeof(int), cudaMemcpyDeviceToHost);
+    cudaMemcpy(c), dev_c, COLUMNS * sizeof(int), cudaMemcpyDeviceToHost);
 
     for (int y = 0; y < ROWS; y++)              // Output Arrays
     {
