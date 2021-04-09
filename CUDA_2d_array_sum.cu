@@ -4,7 +4,7 @@
 //based off sum2darr.cu example code
 __global__ void add(int* a,int* c)
 {
-    int x = blockIdx.x;
+    int x = threadIdx.x;
     int sum = 0;
     for(int i = 0; i < ROWS; i ++){
         sum += a[(COLUMNS * i) + x];
