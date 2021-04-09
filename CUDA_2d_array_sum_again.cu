@@ -10,7 +10,7 @@ __global__ void add(int* a,int* c)
     int temp = a[tid];
     cache[x] = temp;
     int calculationInBox = blockDim.x / 2;
-    while (calculationInBox >= 1)
+    while (calculationInBox > 0)
     {
         if(x < calculationInBox){
             cache[x] += cache[x + calculationInBox];
