@@ -29,7 +29,13 @@ int main()
 
     cudaMemcpy(dev_a, a, ROWS * COLUMNS * sizeof(int), cudaMemcpyHostToDevice);
     add <<<1, COLUMNS >>> (dev_a, dev_c);
-    cudaMemcpy(c, dev_c, COLUMNS * sizeof(int), cudaMemcpyDeviceToHost);
+    int findColSum = 0;
+    for(int i = 0; i < COLUMNS; i++){
+        findColSum += c[i];
+    }
+    printf("the sum of the columns is: %d", findColSum);
+    cudaFree(dev_a);
+    cudaFree(dev_c);
     return 0;
 }
 
