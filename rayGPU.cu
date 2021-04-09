@@ -104,9 +104,9 @@ int main()
   cudaMalloc((void**)&dev_s, SPHERES* sizeof(Sphere));
   cudaMemcpy(dev_s, spheres, SPHERES* sizeof(Sphere), cudaMemcpyHostToDevice);
   drawSpheres<<<grid, 1>>>(dev_s, dev_r, dev_g, dev_b);
-  cudaMemcpy(red, dev_r, DIM * DIM * sizeof(char), cudaMemHostToDevice);
-  cudaMemcpy(green, dev_g, DIM * DIM * sizeof(char), cudaMemHostToDevice);
-  cudaMemcpy(blue, dev_b, DIM * DIM * sizeof(char), cudaMemHostToDevice);
+  cudaMemcpy(red, dev_r, DIM * DIM * sizeof(char), cudaMemcpyHostToDevice);
+  cudaMemcpy(green, dev_g, DIM * DIM * sizeof(char), cudaMemcpyHostToDevice);
+  cudaMemcpy(blue, dev_b, DIM * DIM * sizeof(char), cudaMemcpyHostToDevice);
 
   RGBQUAD color;
   for (int i = 0; i < DIM; i++)
