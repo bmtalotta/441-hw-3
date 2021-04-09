@@ -9,6 +9,8 @@ __global__ void add(int* a,int* c)
     int x = threadIdx.x;
     cache[x] = a[tid];
     int calculationInBox = blockDim.x / 2;
+    
+    printf("into loop \n");
     while (calculationInBox > 0)
     {
         if(x < calculationInBox){
@@ -17,6 +19,7 @@ __global__ void add(int* a,int* c)
             calculationInBox /=2;
         }
     }
+    printf("out of loop \n");
     if(x == 0){
         c[x] = cache[0];
     }
