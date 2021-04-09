@@ -22,7 +22,7 @@ __global__ void add(int* a,int* c)
         }
         
         calculationInBox /=2;
-        printf("calcbox value: %d\n", calculationInBox);
+      //  printf("calcbox value: %d\n", calculationInBox);
     }
     printf("out of loop \n");
     if(x == 0){
