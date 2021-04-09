@@ -5,7 +5,6 @@
 #define ThreadCount 8
 __global__ void findMin(int* a, int* c )
 {
-    printf("here\n");
     int numToSort = N / 8;
     int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
@@ -45,8 +44,7 @@ int main()
     cudaMemcpy(dev_a, a, N * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(dev_c, c, ThreadCount * sizeof(int), cudaMemcpyHostToDevice);
     findMin <<<grid, threads >>> (a, c);
-    cudaDeviceSynchronize();
-    
+
     cudaMemcpy(c, dev_c, ThreadCount * sizeof(int), cudaMemcpyDeviceToHost);
     int min = c[0];
     for(int i = 0; i < 8; i++){
