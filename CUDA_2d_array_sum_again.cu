@@ -7,8 +7,7 @@ __global__ void add(int* a,int* c)
     __shared__ float cache[COLUMNS];
     int tid = threadIdx.x + (blockIdx.x * blockDim.x);
     int x = threadIdx.x;
-    int temp = a[tid];
-    cache[x] = temp;
+    cache[x] = a[tid];
     int calculationInBox = blockDim.x / 2;
     while (calculationInBox > 0)
     {
