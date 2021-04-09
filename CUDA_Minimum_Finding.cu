@@ -5,14 +5,12 @@
 #define ThreadCount 8
 __global__ void findMin(int* a, int* c )
 {
-    
-    printf("here\n");
     int numToSort = N / 8;
     int low = numToSort * threadIdx.x;
     int high = low + numToSort - 1;
     int minValForThread = 1000000000;
     
-    printf("here 2\n");
+    printf("low: %d high: %d\n", low, high);
     for(int i = low; i < high; i++ ){
         if(minValForThread > a[i]){
             minValForThread = a[i];
