@@ -12,7 +12,7 @@ __global__ void findMin(int* a, int* c )
     
     for(int i = low; i < high; i++ ){
         
-        printf("here\n");
+        //printf("here\n");
         if(minValForThread > a[i]){
             minValForThread = a[i];
         }
