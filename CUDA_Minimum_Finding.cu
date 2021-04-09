@@ -11,14 +11,14 @@ __global__ void findMin(int* a, int* c )
     int minValForThread = 1000000000;
     for(int i = low; i < high; i++){//goes through once doesnt loop
         printf("here\n");
-        if(minValForThread > a[i]){
-            minValForThread = a[i];
+        if(minValForThread > *a[i]){
+            minValForThread = *a[i];
         }
     }
     printf("here 3\n");//skips
     
     printf("min for thread %d: %d\n", threadIdx.x, c[threadIdx.x]);//skips
-    c[threadIdx.x] = minValForThread;//does this
+    *c[threadIdx.x] = minValForThread;//does this
 }
 
 int main()
