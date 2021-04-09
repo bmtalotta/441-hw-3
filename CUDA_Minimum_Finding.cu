@@ -25,7 +25,7 @@ __global__ void findMin(int* a, int* c )
 
 int main()
 {
-    dim3 grid(1000000000);
+    dim3 grid(1);
     dim3 threads(ThreadCount);
     int *a;
     a = (int *)malloc(sizeof(int) * N);
